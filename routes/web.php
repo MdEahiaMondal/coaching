@@ -30,3 +30,9 @@ Route::get('/change-user-photo/{user}', ['uses'=>'UserRegisterController@changeP
 Route::post('/user-photo-update/{user}', ['uses'=>'UserRegisterController@updatePhoto', 'as' =>'user-photo-update']);
 Route::get('/user-password-change/{user}', ['uses'=>'UserRegisterController@changePassword', 'as' =>'user-password-change']);
 Route::post('/user-password-update/{user}', ['uses'=>'UserRegisterController@updatePassword', 'as' =>'user-password-update']);
+
+
+
+//************** home pages Route*****************
+Route::get('/header-footer', ['uses'=>'HomePageController@showForm', 'as' =>'header-footer']);
+Route::post('/header-footer-save', ['uses'=>'HomePageController@headerFooterSave', 'as' =>'header-footer-save']);

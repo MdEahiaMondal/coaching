@@ -99,9 +99,15 @@
                     </li>
 
                     <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">General</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('header-footer') }}" class="dropdown-item">Add Header & footer </a></li>
+                            <li><a href="#" class="dropdown-item">Batch List</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">User</a>
-
-
                             <ul class="dropdown-menu">
                                 @if (Auth()->user()->role == 'admin')
                                     <li><a href="{{ route('user-register') }}" class="dropdown-item">Add User</a></li>
@@ -109,7 +115,6 @@
                                 @endif
                                     <li><a href=" {{ route('user-profile',['user'=>auth()->id()]) }}" class="dropdown-item">User Profile</a></li>
                             </ul>
-
                     </li>
 
                 </ul>

@@ -111,8 +111,10 @@ class UserRegisterController extends Controller
         $user = User::find($id);
         $file = $request->file('avatar');
         if ($file){
-            if (file_exists('backend/profile-image/'.$user->avatar)){
-                unlink('backend/profile-image/'.$user->avatar);
+            if ($user->avatar != ''){
+                if (file_exists('backend/profile-image/'.$user->avatar)){
+                    unlink('backend/profile-image/'.$user->avatar);
+                }
             }
 
             $getFileExtension = $file->getClientOriginalExtension();
