@@ -29,7 +29,7 @@
                 @csrf
                <div class="form-group col-12 mb-3">
                     <label for="fatherMobile" class="col-sm-3 col-form-label text-right">Mobile No.</label>
-                    <input type="text" name="mobile" placeholder="Mobile Number" class="form-control col-sm-9 @error('email') is-invalid @enderror" id="fatherMobile" minlength="8" required>
+                    <input type="text" name="mobile" placeholder="Mobile Number" class="form-control col-sm-9 @error('mobile') is-invalid @enderror" id="fatherMobile" minlength="8" required>
                    @error('mobile')
                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -56,7 +56,7 @@
                 <div class="form-group col-12 mb-3">
                     <label for="password" class="col-sm-3 col-form-label text-right">Password</label>
                     <div class="input-group col-sm-9 pl-0 pr-0">
-                        <input type="password" class="form-control @error('email') is-invalid @enderror" placeholder="Password" id="password" name="password" required>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" id="password" name="password" required>
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
