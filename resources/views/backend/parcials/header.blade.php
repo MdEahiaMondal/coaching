@@ -29,12 +29,22 @@
 <body>
 <!--Header Start-->
 <section>
-    <div class="col-sm-12 text-center header pb-1">
-        <h2 class="font-weight-bold p-1 m-0">Web Site Title</h2>
-        <h5 class="menu-bg p-2 pl-3 pr-3 mb-1">Web Sub Title</h5>
-        <p class="font-weight-bold mb-0">215/4/A/3, East-Rampura, Dhaka-1209</p>
-        <p class="font-weight-bold mb-0">Mobile: 880-1722454519</p>
-    </div>
+    @if(isset($header))
+        <div class="col-sm-12 text-center header pb-1">
+            <h2 class="font-weight-bold p-1 m-0">{{ $header->name }}</h2>
+            <h5 class="menu-bg p-2 pl-3 pr-3 mb-1">{{ $header->subTitle }}</h5>
+            <p class="font-weight-bold mb-0">{{ $header->address }}</p>
+            <p class="font-weight-bold mb-0">Mobile: {{ $header->mobile }}</p>
+        </div>
+     @else
+        <div class="col-sm-12 text-center header pb-1">
+            <h2 class="font-weight-bold p-1 m-0">Web Site Title</h2>
+            <h5 class="menu-bg p-2 pl-3 pr-3 mb-1">Web Sub Title</h5>
+            <p class="font-weight-bold mb-0">384/1, West-Nakhal-para, Dhaka-1215</p>
+            <p class="font-weight-bold mb-0">Mobile: 880-1521414629</p>
+        </div>
+    @endif
+
 </section>
 <!--Header End-->
 
