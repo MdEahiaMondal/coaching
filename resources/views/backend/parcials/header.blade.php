@@ -39,7 +39,7 @@
 <!--Header End-->
 
 <!--User Avatar Start-->
-<img class="avatar" src="{{ asset('backend/images/avatar.png') }}" alt="Avatar">
+<img class="avatar" src=" @if(auth()->user()->avatar) {{ asset('backend/profile-image/'.auth()->user()->avatar) }} @else {{ asset('backend/pro/avatar.png') }} @endif" alt="Avatar">
 <!--User Avatar Start-->
 
 <!--Main Menu Start-->

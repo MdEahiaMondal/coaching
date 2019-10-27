@@ -9,15 +9,7 @@
                 <div class="form-group">
                     <div class="col-sm-12">
 
-                        @if(Session::get('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>Success</strong> {{ Session::get('success') }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
-
+                        @include('backend.parcials.message')
 
                         <h4 class="text-center font-weight-bold font-italic mt-3"> <b>{{auth()->user()->name}}'s</b>  Profile </h4>
                     </div>
@@ -35,7 +27,7 @@
                             <td>
                                 <a href="{{ route('change-info',['user'=>$user->id]) }}" class="btn btn-sm btn-dark">Change Info</a>
                                 <a href="{{ route('change-user-photo',['user'=>$user->id]) }}" class="btn btn-sm btn-info"> Change Photo </a>
-                                <a href="#" class="btn btn-sm btn-danger"> Change Password </a>
+                                <a href="{{ route('user-password-change', ['user'=>$user->id]) }}" class="btn btn-sm btn-danger"> Change Password </a>
                             </td>
                         </tr>
 

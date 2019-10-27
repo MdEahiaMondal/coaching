@@ -28,3 +28,5 @@ Route::get('/change-info/{user}', ['uses'=>'UserRegisterController@changeInfo', 
 Route::post('/user-info-update/{user}', ['uses'=>'UserRegisterController@updateInfo', 'as' =>'user-info-update']);
 Route::get('/change-user-photo/{user}', ['uses'=>'UserRegisterController@changePhoto', 'as' =>'change-user-photo']);
 Route::post('/user-photo-update/{user}', ['uses'=>'UserRegisterController@updatePhoto', 'as' =>'user-photo-update']);
+Route::get('/user-password-change/{user}', ['uses'=>'UserRegisterController@changePassword', 'as' =>'user-password-change']);
+Route::post('/user-password-update/{user}', ['uses'=>'UserRegisterController@updatePassword', 'as' =>'user-password-update']);

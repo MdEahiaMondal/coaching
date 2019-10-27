@@ -140,4 +140,30 @@ class UserRegisterController extends Controller
     }
 
 
+    public function changePassword($id)
+    {
+        $user = User::find($id);
+        return view('backend.users.change-password', compact('user'));
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        $request->validate([
+            'new_password' => 'required|min:8|max:15',
+        ]);
+        $user = User::find($id);
+        $currentPassword = $request->currentPassword;
+        $new_password = $request->new_password;
+
+        if (Hash::check($currentPassword,$user->password)){
+            $user->password = Hash::make($new_password);
+            $user->save();
+            return redirect()->route('user-profile', ['user'=>$id])->with('success', 'User password Uploaded Successfylly Done!!');
+        }else{
+            return back()->with('error', 'Current password does not match !!');
+        }
+
+    }
+
+
 }
