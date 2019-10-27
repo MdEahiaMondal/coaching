@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('backend.pages.home');
 });
 
+
+Route::get('/user-register',['user'=>'UserRegisterController@showRegisterForm', 'as' => 'user-register']);
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

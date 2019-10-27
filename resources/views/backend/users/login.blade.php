@@ -27,15 +27,19 @@
             </div>
             <form method="POST" action="{{ route('login') }}" enctype="multipart/form-data" autocomplete="off" class="form-inline">
                 @csrf
-              {{--  <div class="form-group col-12 mb-3">
+               <div class="form-group col-12 mb-3">
                     <label for="fatherMobile" class="col-sm-3 col-form-label text-right">Mobile No.</label>
-                    <input type="text" name="mobile" placeholder="Mobile Number" class="form-control col-sm-9" id="fatherMobile" minlength="8" required>
-                    <span class="text-danger"></span>
-                </div>--}}
+                    <input type="text" name="mobile" placeholder="Mobile Number" class="form-control col-sm-9 @error('email') is-invalid @enderror" id="fatherMobile" minlength="8" required>
+                   @error('mobile')
+                   <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                   @enderror
+                </div>
 
 
 
-                <div class="form-group col-12 mb-3">
+                {{--<div class="form-group col-12 mb-3">
                     <label for="email" class="col-sm-3 col-form-label text-right">Email</label>
                     <div class="input-group col-sm-9 pl-0 pr-0">
                         <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="email" id="email" name="email" required autofocus>
@@ -47,8 +51,7 @@
                         @enderror
 
                     </div>
-
-                </div>
+                </div>--}}
 
                 <div class="form-group col-12 mb-3">
                     <label for="password" class="col-sm-3 col-form-label text-right">Password</label>
