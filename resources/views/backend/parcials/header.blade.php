@@ -98,6 +98,17 @@
                         </ul>
                     </li>
 
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">User</a>
+
+                        @if (Auth()->user()->role == 'admin')
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('user-register') }}" class="dropdown-item">Add User</a></li>
+                                <li><a href=" {{ route('user-list') }}" class="dropdown-item">User List</a></li>
+                            </ul>
+                        @endif
+                    </li>
+
                 </ul>
             </li>
         </ul>

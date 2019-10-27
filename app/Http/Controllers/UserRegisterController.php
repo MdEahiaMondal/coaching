@@ -12,7 +12,12 @@ class UserRegisterController extends Controller
 {
     public function showRegisterForm()
     {
-        return view('backend.users.register');
+        if (auth()->user()->role == 'admin'){
+            return view('backend.users.register');
+        }else{
+            return redirect('/home');
+        }
+
     }
 
 
@@ -53,8 +58,13 @@ class UserRegisterController extends Controller
 
     public function userList()
     {
-        $users = User::all();
-        return view('backend.pages.user-list', compact('users'));
+        if (auth()->user()->role == 'admin'){
+            $users = User::all();
+            return view('backend.pages.user-list', compact('users'));
+        }else{
+            return redirect('/home');
+        }
+
     }
 
 
