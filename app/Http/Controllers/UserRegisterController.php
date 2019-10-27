@@ -109,8 +109,24 @@ class UserRegisterController extends Controller
     {
 
         $user = User::find($id);
+        $file = $request->file('avatar');
+        if ($file){
+            if (file_exists('backend/profile-image/'.$user->avatar)){
+                unlink('backend/profile-image/'.$user->avatar);
+            }
 
-        // manualy image upload without any pakeg and old image deleted
+            $getFileExtension = $file->getClientOriginalExtension();
+            $setImageName = rand(). '.' .$getFileExtension;
+            $dir = "backend/profile-image/".$setImageName;
+            Image::make($file)->resize('400', '400')->save($dir,'100');
+            $user->avatar = $setImageName;
+            $user->save();
+        }
+        $user->save();
+
+
+
+        /*// manualy image upload without any pakeg and old image deleted
         $file = $request->file('avatar');
         $imageName = $file->getClientOriginalName();
         $dir = 'backend/profile-image/';
@@ -118,7 +134,7 @@ class UserRegisterController extends Controller
         $setImageName = $randName.$imageName;
         $file->move($dir,$setImageName);
         $user->avatar = $setImageName;
-        $user->save();
+        $user->save();*/
 
         return redirect()->route('user-profile', ['user'=>$id])->with('success', 'Profile Image Uploaded Successfylly Done!!');
     }
