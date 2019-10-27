@@ -101,12 +101,15 @@
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">User</a>
 
-                        @if (Auth()->user()->role == 'admin')
+
                             <ul class="dropdown-menu">
-                                <li><a href="{{ route('user-register') }}" class="dropdown-item">Add User</a></li>
-                                <li><a href=" {{ route('user-list') }}" class="dropdown-item">User List</a></li>
+                                @if (Auth()->user()->role == 'admin')
+                                    <li><a href="{{ route('user-register') }}" class="dropdown-item">Add User</a></li>
+                                    <li><a href=" {{ route('user-list') }}" class="dropdown-item">User List</a></li>
+                                @endif
+                                    <li><a href=" {{ route('user-profile',['user'=>auth()->id()]) }}" class="dropdown-item">User Profile</a></li>
                             </ul>
-                        @endif
+
                     </li>
 
                 </ul>

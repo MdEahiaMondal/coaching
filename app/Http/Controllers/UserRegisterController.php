@@ -28,7 +28,7 @@ class UserRegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         $users = User::all();
-        return view('backend.pages.user-list',['users'=>$users]);
+        return view('backend.users.user-list',['users'=>$users]);
     }
 
 
@@ -60,11 +60,17 @@ class UserRegisterController extends Controller
     {
         if (auth()->user()->role == 'admin'){
             $users = User::all();
-            return view('backend.pages.user-list', compact('users'));
+            return view('backend.users.user-list', compact('users'));
         }else{
             return redirect('/home');
         }
 
+    }
+
+    public function userProfile($id)
+    {
+       $user = User::find($id);
+           return view('backend.users.profile',['user'=>$user]);
     }
 
 

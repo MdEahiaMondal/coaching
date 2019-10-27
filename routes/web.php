@@ -23,3 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user-register', ['uses'=>'UserRegisterController@showRegisterForm', 'as' => 'user-register'])->middleware('auth');
 Route::post('/user-register', ['uses'=>'UserRegisterController@userSave', 'as' => 'user-save'])->middleware('auth');
 Route::get('/user-list', ['uses'=>'UserRegisterController@userList', 'as' =>'user-list']);
+Route::get('/user-profile/{user}', ['uses'=>'UserRegisterController@userProfile', 'as' =>'user-profile']);
