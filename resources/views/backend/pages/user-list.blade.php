@@ -18,133 +18,28 @@
                         <tr>
                             <th>Sl.</th>
                             <th>Name</th>
-                            <th>school</th>
+                            <th>Role</th>
+                            <th>Email</th>
                             <th>Mobile</th>
                             <th style="width: 100px;">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Muhammad Imran</td>
-                            <td>Oxford</td>
-                            <td>8801722454519</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Muhammad Imran</td>
-                            <td>Oxford</td>
-                            <td>8801722454519</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Muhammad Imran</td>
-                            <td>Oxford</td>
-                            <td>8801722454519</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Muhammad Imran</td>
-                            <td>Oxford</td>
-                            <td>8801722454519</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Muhammad Imran</td>
-                            <td>Oxford</td>
-                            <td>8801722454519</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Muhammad Imran</td>
-                            <td>Oxford</td>
-                            <td>8801722454519</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Muhammad Imran</td>
-                            <td>Oxford</td>
-                            <td>8801722454519</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>Muhammad Imran</td>
-                            <td>Oxford</td>
-                            <td>8801722454519</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>Muhammad Imran</td>
-                            <td>Oxford</td>
-                            <td>8801722454519</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Muhammad Imran</td>
-                            <td>Oxford</td>
-                            <td>8801722454519</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>Muhammad Imran</td>
-                            <td>Oxford</td>
-                            <td>8801722454519</td>
-                            <td>
-                                <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
-                                <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
-                            </td>
-                        </tr>
+                        @php($i = 1)
+                            @foreach($users as $user)
+                                <tr>
+                                    <td>{{ $i++ }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->role }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->mobile }}</td>
+                                    <td>
+                                        <a href="#" class="btn btn-sm btn-dark"><span class="fa fa-eye"></span></a>
+                                        <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
+                                        <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -23,7 +23,7 @@ class UserRegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         $users = User::all();
-        return view('backend.pages.user-list');
+        return view('backend.pages.user-list',['users'=>$users]);
     }
 
 
@@ -48,6 +48,13 @@ class UserRegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+
+    public function userList()
+    {
+        $users = User::all();
+        return view('backend.pages.user-list', compact('users'));
     }
 
 
