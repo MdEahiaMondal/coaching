@@ -112,7 +112,9 @@
                         <a class="dropdown-item dropdown-toggle" href="#">General</a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('header-footer') }}" class="dropdown-item">Add Header & footer </a></li>
-                            <li><a href="#" class="dropdown-item">Batch List</a></li>
+                             @if(isset($header))
+                                <li><a href="{{ route('header-footer-manage', ['id'=>$header->id]) }}" class="dropdown-item">Manage Header & footer</a></li> {{--this id come from appService Provider you can see that--}}
+                            @endif
                         </ul>
                     </li>
 

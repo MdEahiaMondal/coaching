@@ -26,22 +26,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
        View::composer('backend.parcials.header', function ($view){
-           $avatar = auth()->user()->avatar;
-           $view->with('avatar', $avatar);
+           $user = auth()->user();
+           $header = HeaderFooter::first();
+           $view->with([
+               'user'=>$user,
+               'header'=>$header,
+           ]);
        });
 
-        View::composer('backend.parcials.header', function ($view){
-            $header = HeaderFooter::find(1);
-            $view->with('header', $header);
-        });
-
-
         View::composer('backend.parcials.footer', function ($view){
-            $footer = HeaderFooter::find(1);
+            $footer = HeaderFooter::first();
             $view->with('footer', $footer);
         });
-
-
 
     }
 }

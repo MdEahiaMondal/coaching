@@ -8,19 +8,21 @@ use Illuminate\Http\Request;
 class HomePageController extends Controller
 {
     public function showForm(){
-        return view('backend.pages.header-footer-form');
+
+        $check = HeaderFooter::first();
+        if (isset($check)){
+            $headerFooter = HeaderFooter::find($check->id);
+            return view('backend.pages.manage-header-footer', compact('headerFooter'));
+        }else{
+            return view('backend.pages.header-footer-form');
+        }
+
     }
 
 
     public function headerFooterSave(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'subTitle' => 'required',
-            'address' => 'required',
-            'mobile' => 'required',
-            'copyRight' => 'required',
-        ]);
+        $this->headerFooterValidate($request);
 
         $data = new HeaderFooter();
         $data->name = $request->name;
@@ -33,5 +35,42 @@ class HomePageController extends Controller
 
         return redirect()->route('home')->with('success', 'Data Create Successfully Done !');
     }
+
+    public function headerFooterManage($id)
+    {
+        $headerFooter = HeaderFooter::find($id);
+        return view('backend.pages.manage-header-footer', compact('headerFooter'));
+    }
+
+
+    public function headerFooterUpdate(Request $request, $id)
+    {
+        $this->headerFooterValidate($request);
+        $headerFooter = HeaderFooter::find($id);
+
+        $headerFooter->name = $request->name;
+        $headerFooter->subTitle = $request->subTitle;
+        $headerFooter->address = $request->address;
+        $headerFooter->mobile = $request->mobile;
+        $headerFooter->copyRight = $request->copyRight;
+        $headerFooter->status = $request->status;
+        $headerFooter->save();
+
+        return redirect()->route('home')->with('success', 'Header & Footer Uodate Successfully Done !');
+
+    }
+
+
+    protected function headerFooterValidate($request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'subTitle' => 'required',
+            'address' => 'required',
+            'mobile' => 'required',
+            'copyRight' => 'required',
+        ]);
+    }
+
 
 }

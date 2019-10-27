@@ -36,3 +36,5 @@ Route::post('/user-password-update/{user}', ['uses'=>'UserRegisterController@upd
 //************** home pages Route*****************
 Route::get('/header-footer', ['uses'=>'HomePageController@showForm', 'as' =>'header-footer']);
 Route::post('/header-footer-save', ['uses'=>'HomePageController@headerFooterSave', 'as' =>'header-footer-save']);
+Route::get('/header-footer-manage/{id}', ['uses'=>'HomePageController@headerFooterManage', 'as' =>'header-footer-manage']);
+Route::post('/header-footer-update/{id}', ['uses'=>'HomePageController@headerFooterUpdate', 'as' =>'header-footer-update']);
