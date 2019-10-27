@@ -1,6 +1,6 @@
 
 <!--Footer Start-->
-<footer class="container-fluid fixed-bottom">
+<footer class="container-fluid">
     <div class="row footer">
         <div class="col-12">
             <p class="pt-2 mb-2 text-center">Copyright &copy; <a class="footer-link" href="">  @if(isset($footer)) {{ $footer->copyRight }} @else Owner  @endif </a> || Developed  by:

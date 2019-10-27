@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('backend/plugins/data-table/css/fixedHeader.bootstrap4.min.css') }}">
     <!--    Theme Stylesheet-->
     <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/my.css') }}">
     <!--    Favicon-->
     <link rel="shortcut icon" href="{{ asset('backend/images/favicon.png" type="image/x-icon') }}">
 </head>
@@ -62,7 +63,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="index.html"><span class="fa fa-home"></span> Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ route('home') }}"><span class="fa fa-home"></span> Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -108,10 +109,22 @@
                         </ul>
                     </li>
 
+
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Slider</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('slider-create') }}" class="dropdown-item">Add Slider</a></li>
+                            <li><a href="#" class="dropdown-item">Manage Slider</a></li>
+                            <li><a href="#" class="dropdown-item">Slider List</a></li>
+                        </ul>
+                    </li>
+
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#">General</a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('header-footer') }}" class="dropdown-item">Add Header & footer </a></li>
+                            @if(!isset($header))
+                                <li><a href="{{ route('header-footer') }}" class="dropdown-item">Add Header & footer </a></li>
+                            @endif
                              @if(isset($header))
                                 <li><a href="{{ route('header-footer-manage', ['id'=>$header->id]) }}" class="dropdown-item">Manage Header & footer</a></li> {{--this id come from appService Provider you can see that--}}
                             @endif

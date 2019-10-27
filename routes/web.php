@@ -38,3 +38,10 @@ Route::get('/header-footer', ['uses'=>'HomePageController@showForm', 'as' =>'hea
 Route::post('/header-footer-save', ['uses'=>'HomePageController@headerFooterSave', 'as' =>'header-footer-save']);
 Route::get('/header-footer-manage/{id}', ['uses'=>'HomePageController@headerFooterManage', 'as' =>'header-footer-manage']);
 Route::post('/header-footer-update/{id}', ['uses'=>'HomePageController@headerFooterUpdate', 'as' =>'header-footer-update']);
+
+
+//************** Slider Route*****************
+Route::get('/slider-create', ['uses'=>'SliderController@showForm', 'as' =>'slider-create']);
+Route::post('/slider-save', ['uses'=>'SliderController@sliderrSave', 'as' =>'slider-save']);
+Route::get('/slider-manage/{id}', ['uses'=>'SliderController@sliderManage', 'as' =>'slider-manage']);
+Route::post('/slider-update/{id}', ['uses'=>'SliderController@sliderUpdate', 'as' =>'slider-update']);
