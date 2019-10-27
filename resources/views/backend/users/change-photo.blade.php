@@ -25,19 +25,24 @@
 
                 <div class="table-responsive p-1">
                     <table  class="table table-striped table-bordered dt-responsive nowrap text-center" style="width: 100%;">
+                        <form action="{{ route('user-photo-update',['user'=>$user->id]) }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <tr> <td colspan="2"><img src=" @if($user->avatar) {{ asset('backend/profile-image/'.$user->avatar) }} @else {{ asset('backend/images/avatar.png') }} @endif " id="profile_photo" style="max-width: 400px;" alt=""> </td> </tr>
+                            <tr>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input"  name="avatar" id="avatar" onchange="showImage(this, 'profile_photo')" value="">
+                                            <label class="custom-file-label" for="inputGroupFile02" id="fileLabel"></label>
+                                        </div>
 
-                        <tr> <td colspan="2"><img width="200" src=" @if($user->avatar) {{ asset('backend/profile-image/'.$user->avatar) }} @else {{ asset('backend/images/avatar.png') }} @endif " alt=""> </td> </tr>
-                        <tr> <th>Name</th>  <td>{{ $user->name }}</td> </tr>
-                        <tr> <th>Role</th>  <td>{{ $user->role }}</td> </tr>
-                        <tr> <th>Email</th>  <td>{{ $user->email }}</td> </tr>
-                        <tr> <th>Mobile</th>  <td>{{ $user->mobile }}</td> </tr>
-                        <tr> <th> Action </th>
-                            <td>
-                                <a href="{{ route('change-info',['user'=>$user->id]) }}" class="btn btn-sm btn-dark">Change Info</a>
-                                <a href="{{ route('change-user-photo',['user'=>$user->id]) }}" class="btn btn-sm btn-info"> Change Photo </a>
-                                <a href="#" class="btn btn-sm btn-danger"> Change Password </a>
-                            </td>
-                        </tr>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr><td><input type="submit" class="btn btn-block my-btn-submit"> </td></tr>
+
+                        </form>
 
                     </table>
                 </div>

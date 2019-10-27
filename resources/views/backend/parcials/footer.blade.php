@@ -25,6 +25,7 @@
 <script src="{{ asset('backend/plugins/data-table/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/data-table/js/dataTables.fixedHeader.min.js') }}"></script>
 <!--    Theme Script-->
+<script src="{{ asset('backend/js/live-image-show.js') }}"></script> {{--live image show--}}
 <script src="{{ asset('backend/js/script.js') }}"></script>
 </body>
 </html>

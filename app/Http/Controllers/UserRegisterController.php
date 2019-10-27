@@ -7,6 +7,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Image;
 
 class UserRegisterController extends Controller
 {
@@ -94,6 +95,32 @@ class UserRegisterController extends Controller
 
 
         return redirect()->route('user-profile',['user'=>$id])->with('success','Profile Info Updated Successfylly Done!');
+    }
+
+
+
+    public function changePhoto($id)
+    {
+        $user = User::find($id);
+        return view('backend.users.change-photo', compact('user'));
+    }
+
+    public function updatePhoto(Request $request, $id)
+    {
+
+        $user = User::find($id);
+
+        // manualy image upload without any pakeg and old image deleted
+        $file = $request->file('avatar');
+        $imageName = $file->getClientOriginalName();
+        $dir = 'backend/profile-image/';
+        $randName = rand();
+        $setImageName = $randName.$imageName;
+        $file->move($dir,$setImageName);
+        $user->avatar = $setImageName;
+        $user->save();
+
+        return redirect()->route('user-profile', ['user'=>$id])->with('success', 'Profile Image Uploaded Successfylly Done!!');
     }
 
 

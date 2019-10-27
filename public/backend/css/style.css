@@ -47,12 +47,22 @@ body{
 /*Login Form Start*/
 .login-form{
     width: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+/*register Form Start*/
+.register-form{
+    width: 50%;
     margin:10px auto;
-   /* position: absolute;*/
- /*   left: 50%;
-    top: 50%;*/
+    /* position: absolute;*/
+    /*   left: 50%;
+       top: 50%;*/
     /*transform: translate(-50%,-50%);*/
 }
+
 
 @media (max-width: 1000px) {
     .login-form{
