@@ -70,7 +70,30 @@ class UserRegisterController extends Controller
     public function userProfile($id)
     {
        $user = User::find($id);
-           return view('backend.users.profile',['user'=>$user]);
+       return view('backend.users.profile',['user'=>$user]);
+    }
+
+    public function changeInfo($id)
+    {
+        $user = User::find($id);
+        return view('backend.users.change-info')->with(['user'=>$user]);
+    }
+
+    public function updateInfo(Request $request, $id)
+    {
+
+        $request->validate([
+            'mobile' => 'required|unique:users,mobile,'.$id.',id',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => 'required|unique:users,email,'.$id.'id',
+        ]);
+
+
+        $user = User::find($id);
+        $user->update($request->all());
+
+
+        return redirect()->route('user-profile',['user'=>$id])->with('success','Profile Info Updated Successfylly Done!');
     }
 
 

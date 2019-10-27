@@ -8,6 +8,17 @@
             <div class="col-md-8 offset-md-2 pl-0 pr-0">
                 <div class="form-group">
                     <div class="col-sm-12">
+
+                        @if(Session::get('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success</strong> {{ Session::get('success') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+
+
                         <h4 class="text-center font-weight-bold font-italic mt-3"> <b>{{auth()->user()->name}}'s</b>  Profile </h4>
                     </div>
                 </div>
@@ -22,7 +33,7 @@
                         <tr> <th>Mobile</th>  <td>{{ $user->mobile }}</td> </tr>
                         <tr> <th> Action </th>
                             <td>
-                                <a href="#" class="btn btn-sm btn-dark">Change Info</a>
+                                <a href="{{ route('change-info',['user'=>$user->id]) }}" class="btn btn-sm btn-dark">Change Info</a>
                                 <a href="#" class="btn btn-sm btn-info"> Change Photo </a>
                                 <a href="#" class="btn btn-sm btn-danger"> Change Password </a>
                             </td>

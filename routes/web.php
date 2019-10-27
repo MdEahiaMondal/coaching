@@ -24,3 +24,5 @@ Route::get('/user-register', ['uses'=>'UserRegisterController@showRegisterForm',
 Route::post('/user-register', ['uses'=>'UserRegisterController@userSave', 'as' => 'user-save'])->middleware('auth');
 Route::get('/user-list', ['uses'=>'UserRegisterController@userList', 'as' =>'user-list']);
 Route::get('/user-profile/{user}', ['uses'=>'UserRegisterController@userProfile', 'as' =>'user-profile']);
+Route::get('/change-info/{user}', ['uses'=>'UserRegisterController@changeInfo', 'as' =>'change-info']);
+Route::post('/user-info-update/{user}', ['uses'=>'UserRegisterController@updateInfo', 'as' =>'user-info-update']);

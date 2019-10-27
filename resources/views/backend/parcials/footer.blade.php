@@ -1,6 +1,6 @@
 
 <!--Footer Start-->
-<footer class="container-fluid">
+<footer class="container-fluid fixed-bottom">
     <div class="row footer">
         <div class="col-12">
             <p class="pt-2 mb-2 text-center">Copyright &copy; <a class="footer-link" href="">Owner</a> || Developed  by:
