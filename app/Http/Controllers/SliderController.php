@@ -103,4 +103,16 @@ class SliderController extends Controller
         return redirect()->route('slider-manage')->with('success', 'Slider Update Successfully !!');
     }
 
+
+    public function sliderDelete($id)
+    {
+        $slider = Slider::find($id);
+        if ($slider->image != ''){
+            unlink('backend/slider-images/'.$slider->image);
+        }
+
+        $slider->delete();
+        return back()->with('success', 'Slider Deleted Successfully !');
+    }
+
 }

@@ -111,11 +111,10 @@
 
 
                     <li class="dropdown-submenu">
-                        <a class="dropdown-item dropdown-toggle" href="#">Slider</a>
+                        <a class="dropdown-item dropdown-toggle" href="#0">Slider</a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('slider-create') }}" class="dropdown-item">Add Slider</a></li>
                             <li><a href="{{ route('slider-manage') }}" class="dropdown-item">Manage Slider</a></li>
-                            <li><a href="#" class="dropdown-item">Slider List</a></li>
                         </ul>
                     </li>
 
