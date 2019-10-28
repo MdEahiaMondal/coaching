@@ -44,4 +44,28 @@ class SliderController extends Controller
     }
 
 
+    public function sliderManage()
+    {
+        $sliders = Slider::all();
+        return view('backend.slider.index', compact('sliders'));
+    }
+
+
+    public function sliderUnpublish($id)
+    {
+        $slider = Slider::find($id);
+        $slider->status = 0;
+        $slider->save();
+        return back()->with('success', 'Slider Unpublish Successfully !!');
+    }
+
+
+    public function sliderPublish($id)
+    {
+        $slider = Slider::find($id);
+        $slider->status = 1;
+        $slider->save();
+        return back()->with('success', 'Slider Publish Successfully !!');
+    }
+
 }

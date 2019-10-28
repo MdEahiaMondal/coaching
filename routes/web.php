@@ -43,5 +43,7 @@ Route::post('/header-footer-update/{id}', ['uses'=>'HomePageController@headerFoo
 //************** Slider Route*****************
 Route::get('/slider-create', ['uses'=>'SliderController@showForm', 'as' =>'slider-create']);
 Route::post('/slider-save', ['uses'=>'SliderController@sliderrSave', 'as' =>'slider-save']);
-Route::get('/slider-manage/{id}', ['uses'=>'SliderController@sliderManage', 'as' =>'slider-manage']);
+Route::get('/slider-manage', ['uses'=>'SliderController@sliderManage', 'as' =>'slider-manage']);
 Route::post('/slider-update/{id}', ['uses'=>'SliderController@sliderUpdate', 'as' =>'slider-update']);
+Route::get('/slider-unpublish/{slider}', ['uses'=>'SliderController@sliderUnpublish', 'as' =>'slider-unpublish']);
+Route::get('/slider-publish/{slider}', ['uses'=>'SliderController@sliderPublish', 'as' =>'slider-publish']);
