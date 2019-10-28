@@ -61,6 +61,8 @@ Route::get('/slider-delete/{slider}', ['uses'=>'SliderController@sliderDelete', 
 // ********************school managment Route***************************
 
 Route::get('add-school', ['uses' => 'SchoolManagementController@addSchool', 'as' => 'add-school']);
+Route::post('school-store', ['uses' => 'SchoolManagementController@store', 'as' => 'school-store']);
+Route::get('school-show', ['uses' => 'SchoolManagementController@show', 'as' => 'school-show']);
 
 
 

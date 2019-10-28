@@ -89,7 +89,7 @@
                         <a class="dropdown-item dropdown-toggle" href="#">School</a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('add-school') }}" class="dropdown-item">Add School</a></li>
-                            <li><a href="#" class="dropdown-item">School List</a></li>
+                            <li><a href="{{ route('school-show') }}" class="dropdown-item">School List</a></li>
                         </ul>
                     </li>
 

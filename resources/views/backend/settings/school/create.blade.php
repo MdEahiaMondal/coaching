@@ -6,16 +6,15 @@
     <section class="container-fluid">
         <div class="row content">
             <div class="col-md-8 offset-md-2 pl-0 pr-0">
-
-                @include('backend.parcials.message')
-
                 <div class="form-group">
                     <div class="col-sm-12">
                         <h4 class="text-center font-weight-bold font-italic mt-3">School Add Form</h4>
                     </div>
                 </div>
 
-                <form action="{{ route('slider-save') }}" method="post" enctype="multipart/form-data">
+                @include('backend.parcials.message')
+
+                <form action="{{ route('school-store') }}" method="post" >
                     @csrf
                     <div class="table-responsive p-1">
                         <table id="" class="table table-bordered dt-responsive nowrap text-center" style="width: 100%;">
@@ -24,7 +23,7 @@
                                     <div class="form-group row mb-0">
                                         <label for="schoolName" class="col-form-label col-sm-3 text-right">School Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="name" value="{{ old('name') }}" id="schoolName" placeholder="Write School Name here" required>
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" id="schoolName" placeholder="Write School Name here" required>
                                             @error('name')
                                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                             @enderror
