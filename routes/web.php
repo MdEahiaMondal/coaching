@@ -51,3 +51,36 @@ Route::get('/photo-gallery', ['uses'=>'SliderController@photoGallery', 'as' =>'p
 Route::get('/slider-edit/{slider}', ['uses'=>'SliderController@sliderEdit', 'as' =>'slider-edit']);
 Route::get('/slider-update/{slider}', ['uses'=>'SliderController@sliderUpdate', 'as' =>'slider-update']);
 Route::get('/slider-delete/{slider}', ['uses'=>'SliderController@sliderDelete', 'as' =>'slider-delete']);
+
+
+
+/* *************************************************** Our Main Work Start hear *********************************************** */
+
+
+
+// ********************school managment Route***************************
+
+Route::get('add-school', ['uses' => 'SchoolManagementController@addSchool', 'as' => 'add-school']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
