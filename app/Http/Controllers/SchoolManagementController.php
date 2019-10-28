@@ -54,6 +54,14 @@ class SchoolManagementController extends Controller
     }
 
 
+    public function destroy($id)
+    {
+        $school = School::find($id);
+
+        $school->delete();
+
+        return redirect()->route('school-show')->with('success', 'School Deleted successfully Done!!');
+    }
 
     public function schoolUnpublish($id){
         $school = School::find($id);
