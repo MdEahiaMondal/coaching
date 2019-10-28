@@ -32,4 +32,26 @@ class SchoolManagementController extends Controller
         return view('backend.settings.school.index', compact('schools'));
     }
 
+
+
+    public function schoolUnpublish($id){
+        $school = School::find($id);
+
+        $school->status = 0;
+        $school->save();
+
+        return back()->with('success', 'Publication status Unpublish Successfully');
+    }
+
+      public function schoolPublish($id){
+        $school = School::find($id);
+
+        $school->status = 1;
+        $school->save();
+
+        return back()->with('success', 'Publication status Publish Successfully');
+    }
+
+
+
 }
