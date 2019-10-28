@@ -74,4 +74,33 @@ class SliderController extends Controller
         return view('backend.slider.photo-gallery', compact('sliders'));
     }
 
+
+    public function sliderEdit($id)
+    {
+        $slider = Slider::find($id);
+        return view('backend.slider.edit', compact('slider'));
+    }
+
+
+    public function sliderUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
+
+        $slider = Slider::find($id);
+        $slider->title = $request->title;
+        $slider->description = $request->description;
+        $slider->status = $request->status;
+        if ($request->file('image')){
+            unlink('backend/slider-images/'.$slider->image);
+            $slider->image = $this->slideImage($request);
+        }
+
+        $slider->save();
+        return redirect()->route('slider-manage')->with('success', 'Slider Update Successfully !!');
+    }
+
 }

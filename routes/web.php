@@ -48,3 +48,6 @@ Route::post('/slider-update/{id}', ['uses'=>'SliderController@sliderUpdate', 'as
 Route::get('/slider-unpublish/{slider}', ['uses'=>'SliderController@sliderUnpublish', 'as' =>'slider-unpublish']);
 Route::get('/slider-publish/{slider}', ['uses'=>'SliderController@sliderPublish', 'as' =>'slider-publish']);
 Route::get('/photo-gallery', ['uses'=>'SliderController@photoGallery', 'as' =>'photo-gallery']);
+Route::get('/slider-edit/{slider}', ['uses'=>'SliderController@sliderEdit', 'as' =>'slider-edit']);
+Route::get('/slider-update/{slider}', ['uses'=>'SliderController@sliderUpdate', 'as' =>'slider-update']);
+Route::get('/slider-delete/{slider}', ['uses'=>'SliderController@sliderDelete', 'as' =>'slider-delete']);

@@ -42,8 +42,8 @@
                                             <a href="{{ route('slider-publish',['slider'=>$slider->id]) }}" class="btn btn-sm btn-warning"><span title="press to publish" class="fa fa-arrow-alt-circle-up"></span></a>
                                         @endif
 
-                                        <a href="#" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                        <a href="#" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
+                                        <a href="{{ route('slider-edit', ['slider'=>$slider->id]) }}" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
+                                        <a href="{{ route('slider-delete', ['slider'=>$slider->id]) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
                                     </td>
                                 </tr>
                             @endforeach
