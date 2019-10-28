@@ -68,4 +68,10 @@ class SliderController extends Controller
         return back()->with('success', 'Slider Publish Successfully !!');
     }
 
+    public function photoGallery()
+    {
+        $sliders = Slider::all();
+        return view('backend.slider.photo-gallery', compact('sliders'));
+    }
+
 }

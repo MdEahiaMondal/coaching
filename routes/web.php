@@ -47,3 +47,4 @@ Route::get('/slider-manage', ['uses'=>'SliderController@sliderManage', 'as' =>'s
 Route::post('/slider-update/{id}', ['uses'=>'SliderController@sliderUpdate', 'as' =>'slider-update']);
 Route::get('/slider-unpublish/{slider}', ['uses'=>'SliderController@sliderUnpublish', 'as' =>'slider-unpublish']);
 Route::get('/slider-publish/{slider}', ['uses'=>'SliderController@sliderPublish', 'as' =>'slider-publish']);
+Route::get('/photo-gallery', ['uses'=>'SliderController@photoGallery', 'as' =>'photo-gallery']);

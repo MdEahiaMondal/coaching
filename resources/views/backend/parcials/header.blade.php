@@ -77,7 +77,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="gallery.html">Gallery</a>
+                <a class="nav-link" href="{{ route('photo-gallery') }}">Gallery</a>
             </li>
 
             <li class="nav-item dropdown">
