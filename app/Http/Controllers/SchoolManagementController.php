@@ -32,6 +32,27 @@ class SchoolManagementController extends Controller
         return view('backend.settings.school.index', compact('schools'));
     }
 
+    public function edit($id)
+    {
+        $school = School::find($id);
+
+        return view('backend.settings.school.edit', compact('school'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $school = School::find($id);
+
+        $school->name = $request->name;
+        $school->save();
+
+        return redirect()->route('school-show')->with('success', 'School Name Update successfully Done!!');
+    }
+
 
 
     public function schoolUnpublish($id){

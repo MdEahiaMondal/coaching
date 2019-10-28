@@ -63,9 +63,9 @@ Route::get('/slider-delete/{slider}', ['uses'=>'SliderController@sliderDelete', 
 Route::get('add-school', ['uses' => 'SchoolManagementController@addSchool', 'as' => 'add-school']);
 Route::post('school-store', ['uses' => 'SchoolManagementController@store', 'as' => 'school-store']);
 Route::get('school-show', ['uses' => 'SchoolManagementController@show', 'as' => 'school-show']);
-Route::get('school-edit', ['uses' => 'SchoolManagementController@edit', 'as' => 'school-edit']);
-Route::get('school-update', ['uses' => 'SchoolManagementController@update', 'as' => 'school-update']);
-Route::get('school-delete', ['uses' => 'SchoolManagementController@destroy', 'as' => 'school-delete']);
+Route::get('school-edit/{school}', ['uses' => 'SchoolManagementController@edit', 'as' => 'school-edit']);
+Route::post('school-update/{school}', ['uses' => 'SchoolManagementController@update', 'as' => 'school-update']);
+Route::get('school-delete/{school}', ['uses' => 'SchoolManagementController@destroy', 'as' => 'school-delete']);
 Route::get('/school-unpublish/{school}', ['uses'=>'SchoolManagementController@schoolUnpublish', 'as' =>'school-unpublish']);
 Route::get('/school-publish/{school}', ['uses'=>'SchoolManagementController@schoolPublish', 'as' =>'school-publish']);
 
