@@ -53,7 +53,17 @@ class ClassNameController extends Controller
         $class->name = $request->name;
         $class->save();
 
-        return redirect()->route('class.index')->with('success', 'School Name Update successfully Done!!');
+        return redirect()->route('class.index')->with('success', 'Class Name Update successfully Done!!');
+    }
+
+
+    public function destroy($id)
+    {
+        $class = ClassName::find($id);
+
+        $class->delete();
+
+        return redirect()->route('class.index')->with('success', 'Class Deleted successfully Done!!');
     }
 
 
