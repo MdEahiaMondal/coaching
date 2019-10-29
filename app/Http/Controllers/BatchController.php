@@ -11,7 +11,8 @@ class BatchController extends Controller
 
     public function index()
     {
-        //
+        $classes = ClassName::where('status', 1)->get();
+        return view('backend.settings.batch.index', compact('classes'));
     }
 
 
@@ -63,4 +64,13 @@ class BatchController extends Controller
     {
         //
     }
+
+
+    public function fetchData(Request $request)
+    {
+        $batchs = Batch::where(['status' => 1, 'class_id' => $request->id])->get();
+        return view('backend.settings.batch.class_wise-batch', compact('batchs'));
+    }
+
+
 }

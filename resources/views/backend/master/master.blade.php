@@ -3,3 +3,5 @@
     @yield('mainContent')
 
 @include('backend.parcials.footer')
+
+@stack('script')

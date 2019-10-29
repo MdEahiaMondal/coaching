@@ -11,7 +11,15 @@
 <!--Footer End-->
 
 <!--    jQuery-->
+
+<script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+
+{{--
 <script src="{{ asset('backend/js/jquery-3.3.1.slim.min.js') }}"></script>
+--}}
 <!--    magnific popup-->
 <script src="{{ asset('backend/plugins/magnific-popup/js/jquery.magnific-popup.min.js') }}"></script>
 <!--    Carousel-->

@@ -85,6 +85,7 @@ Route::get('/class-publish/{class}', ['uses'=>'ClassNameController@classPublish'
 
 
 // ********************Batch managment Route***************************
+Route::get('get.batch.data', 'BatchController@fetchData')->name('get.batch.data');
 Route::resource('batch', 'BatchController');
 
 
