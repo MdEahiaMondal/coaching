@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('backend.pages.home');
+    return view('backend.users.login');
 });
 
 Auth::routes();
@@ -71,7 +71,16 @@ Route::get('/school-publish/{school}', ['uses'=>'SchoolManagementController@scho
 
 
 
-
+// ********************Class managment Route***************************
+Route::get('class-index', ['uses' => 'ClassNameController@index', 'as' => 'class.index']);
+Route::get('add-class', ['uses' => 'ClassNameController@create', 'as' => 'add-class']);
+Route::post('class-store', ['uses' => 'ClassNameController@store', 'as' => 'class-store']);
+Route::get('class-show', ['uses' => 'ClassNameController@show', 'as' => 'class-show']);
+Route::get('class-edit/{class}', ['uses' => 'ClassNameController@edit', 'as' => 'class-edit']);
+Route::post('class-update/{class}', ['uses' => 'ClassNameController@update', 'as' => 'class-update']);
+Route::get('class-delete/{class}', ['uses' => 'ClassNameController@destroy', 'as' => 'class-delete']);
+Route::get('/class-unpublish/{class}', ['uses'=>'ClassNameController@classUnpublish', 'as' =>'class-unpublish']);
+Route::get('/class-publish/{class}', ['uses'=>'ClassNameController@classPublish', 'as' =>'class-publish']);
 
 
 
