@@ -16,7 +16,7 @@
             <div class="col-12 pl-0 pr-0">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <h4 class="text-center font-weight-bold font-italic mt-3">school List</h4>
+                        <h4 class="text-center font-weight-bold font-italic mt-3">class List</h4>
                     </div>
                 </div>
 
@@ -41,13 +41,13 @@
                                 <td>{{ $class->status == 1 ? 'publish' : 'Unpublish' }}</td>
                                 <td>
                                     @if($class->status == 1)
-                                        <a href="{{ route('school-unpublish',['school'=>$class->id]) }}" title="press to unpublish" class="btn btn-sm btn-success"><span class="fa fa-arrow-alt-circle-down"></span></a>
+                                        <a href="{{ route('class-unpublish',['class'=>$class->id]) }}" title="press to unpublish" class="btn btn-sm btn-success"><span class="fa fa-arrow-alt-circle-down"></span></a>
                                     @else
-                                        <a href="{{ route('school-publish',['school'=>$class->id]) }}" class="btn btn-sm btn-warning"><span title="press to publish" class="fa fa-arrow-alt-circle-up"></span></a>
+                                        <a href="{{ route('class-publish',['class'=>$class->id]) }}" class="btn btn-sm btn-warning"><span title="press to publish" class="fa fa-arrow-alt-circle-up"></span></a>
                                     @endif
 
-                                    <a href="{{ route('school-edit', ['school'=>$class->id]) }}" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
-                                    <a href="{{ route('school-delete', ['school'=>$class->id]) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
+                                    <a href="{{ route('class-edit', ['class'=>$class->id]) }}" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
+                                    <a href="{{ route('class-delete', ['class'=>$class->id]) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
                                 </td>
                             </tr>
                         @endforeach
