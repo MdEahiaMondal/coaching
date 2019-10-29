@@ -30,25 +30,47 @@ class ClassNameController extends Controller
         $data->name = $request->name;
         $data->status = 1;
         $data->save();
-        return redirect()->route('class.index')->with('success', 'Class Added Successfully  Done!');
+        return redirect()->back()->with('success', 'Class Added Successfully  Done!');
 
     }
 
 
-    public function classUnpublish($id){
-        $school = ClassName::find($id);
+    public function edit($id)
+    {
+        $class = ClassName::find($id);
 
-        $school->status = 0;
-        $school->save();
+        return view('backend.settings.class.edit', compact('class'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $class = ClassName::find($id);
+
+        $class->name = $request->name;
+        $class->save();
+
+        return redirect()->route('class.index')->with('success', 'School Name Update successfully Done!!');
+    }
+
+
+    public function classUnpublish($id){
+        $class = ClassName::find($id);
+
+        $class->status = 0;
+        $class->save();
 
         return back()->with('success', 'Publication status Unpublish Successfully');
     }
 
     public function classPublish($id){
-        $school = ClassName::find($id);
+        $class = ClassName::find($id);
 
-        $school->status = 1;
-        $school->save();
+        $class->status = 1;
+        $class->save();
 
         return back()->with('success', 'Publication status Publish Successfully');
     }

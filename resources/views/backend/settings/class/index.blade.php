@@ -38,7 +38,7 @@
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $class->name }}</td>
-                                <td>{{ $class->status == 1 ? 'publish' : 'Unpublish' }}</td>
+                                <td class="{{ $class->status == 1 ? 'text-success' : 'text-warning' }}">{{ $class->status == 1 ? 'publish' : 'Unpublish' }}</td>
                                 <td>
                                     @if($class->status == 1)
                                         <a href="{{ route('class-unpublish',['class'=>$class->id]) }}" title="press to unpublish" class="btn btn-sm btn-success"><span class="fa fa-arrow-alt-circle-down"></span></a>
