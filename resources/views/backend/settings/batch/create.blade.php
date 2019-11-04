@@ -26,6 +26,7 @@
                     @csrf
                     <div class="table-responsive p-1">
                         <table id="" class="table table-bordered dt-responsive nowrap text-center" style="width: 100%;">
+
                             <tr>
                                 <td>
                                     <div class="form-group row mb-0">
@@ -45,6 +46,7 @@
                                     </div>
                                 </td>
                             </tr>
+
                             <tr>
                                 <td>
                                     <div class="form-group row mb-0">
@@ -58,7 +60,27 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr><td><button type="submit" class="btn btn-block my-btn-submit">Create</button></td></tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-group row mb-0">
+                                        <label for="student_capacity" class="col-form-label col-sm-3 text-right">Student Capacity </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control @error('student_capacity') is-invalid @enderror" name="student_capacity" value="{{ old('student_capacity') }}" id="student_capacity" placeholder="Student Capacity" required>
+                                            @error('student_capacity')
+                                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <button type="submit" class="btn btn-block my-btn-submit">Create</button>
+                                </td>
+                            </tr>
+
                         </table>
                     </div>
                 </form>
