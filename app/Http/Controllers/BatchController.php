@@ -28,6 +28,7 @@ class BatchController extends Controller
     {
         $this->validate($request, [
             'name' =>  'required',
+            'student_capacity' =>  'required|integer',
             'class_id' =>  'required|numeric',
         ]);
 
@@ -35,6 +36,7 @@ class BatchController extends Controller
         $batch = new Batch();
         $batch->class_id = $request->class_id;
         $batch->name = $request->name;
+        $batch->student_capacity = $request->student_capacity;
         $batch->status = 1;
         $batch->save();
 
@@ -51,13 +53,26 @@ class BatchController extends Controller
 
     public function edit(Batch $batch)
     {
-        //
+        $classes = ClassName::all();
+
+        return view('backend.settings.batch.edit', compact('classes', 'batch'));
     }
 
 
     public function update(Request $request, Batch $batch)
     {
-        //
+
+        $this->validate($request, [
+            'name'  => 'required|unique:batches,name,'.$batch->id.',id',
+            'student_capacity' =>  'required|integer|max:150',
+            'class_id' =>  'required|numeric',
+        ]);
+
+        $batch->update($request->all());
+
+        Toastr::success('Batch Updated Successfully Done', 'Success');
+       return redirect()->back();
+
     }
 
 

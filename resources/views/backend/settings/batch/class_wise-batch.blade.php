@@ -2,6 +2,7 @@
     <tr>
         <th>SI</th>
         <th>Batch Name</th>
+        <th>Student Capacity</th>
         <th>Status</th>
         <th>Action</th>
     </tr>
@@ -14,6 +15,7 @@
         <tr>
             <td>{{ $key + 1 }}</td>
             <td>{{ $batch->name }}</td>
+            <td>{{ $batch->student_capacity }}</td>
             <td>{{ $batch->status == 1 ? 'publish' : 'Unpublish' }}</td>
             <td>
                 @if($batch->status == 1)
