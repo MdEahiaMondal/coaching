@@ -68,8 +68,29 @@ class BatchController extends Controller
 
     public function fetchData(Request $request)
     {
-        $batchs = Batch::where(['status' => 1, 'class_id' => $request->id])->get();
+        $batchs = Batch::where(['class_id' => $request->id])->get();
         return view('backend.settings.batch.class_wise-batch', compact('batchs'));
+    }
+
+
+
+    public function BatchList($r)
+    {
+        $id = $r->id;
+        $batchs = Batch::where(['class_id' =>$id])->get();
+        return view('backend.settings.batch.class_wise-batch', compact('batchs'));
+    }
+
+
+    public function unpublished(Request $request)
+    {
+        $batch = Batch::find($request->batch_id);
+        $batch->status = 0;
+        $batch->save();
+
+        $batchs = Batch::where(['class_id' =>$request->class_id])->get();
+        return view('backend.settings.batch.class_wise-batch', compact('batchs'));
+
     }
 
 

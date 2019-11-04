@@ -17,7 +17,7 @@
             <td>{{ $batch->status == 1 ? 'publish' : 'Unpublish' }}</td>
             <td>
                 @if($batch->status == 1)
-                    <a href="{{ route('slider-unpublish',['slider'=>$batch->id]) }}" title="press to unpublish" class="btn btn-sm btn-success"><span class="fa fa-arrow-alt-circle-down"></span></a>
+                    <a href="#0" onclick="unpublish('{{$batch->id}}', '{{ $batch->class_id }}')" title="press to unpublish" class="btn btn-sm btn-success"><span class="fa fa-arrow-alt-circle-down"></span></a>
                 @else
                     <a href="{{ route('slider-publish',['slider'=>$batch->id]) }}" class="btn btn-sm btn-warning"><span title="press to publish" class="fa fa-arrow-alt-circle-up"></span></a>
                 @endif
@@ -39,3 +39,19 @@
 
 
 </tbody>
+
+
+<script>
+
+    function unpublish(batch_id, class_id) {
+       var check =  confirm("Are you sure to unpublish it ? Press Ok");
+
+      if(check){
+          $.get("{{ route('batch.unpublished') }}", {batch_id: batch_id, class_id: class_id } , function (feedBackResult) {
+              $("#batchList").html(feedBackResult)
+          })
+      }
+
+    }
+
+</script>
