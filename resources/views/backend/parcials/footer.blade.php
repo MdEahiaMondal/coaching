@@ -35,5 +35,11 @@
 <!--    Theme Script-->
 <script src="{{ asset('backend/js/live-image-show.js') }}"></script> {{--live image show--}}
 <script src="{{ asset('backend/js/script.js') }}"></script>
+
+
+{{--// for toaster message--}}
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::message() !!}
+
 </body>
 </html>

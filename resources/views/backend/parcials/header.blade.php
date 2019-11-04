@@ -6,6 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Coaching | Home</title>
+
+
     <!--    Font Awesome Stylesheet-->
     <link rel="stylesheet" href="{{ asset('backend/fonts/fa/css/all.min.css') }}">
     <!--    Animate CSS-->
@@ -26,6 +28,10 @@
     <link rel="stylesheet" href="{{ asset('backend/css/my.css') }}">
     <!--    Favicon-->
     <link rel="shortcut icon" href="{{ asset('backend/images/favicon.png" type="image/x-icon') }}">
+
+    {{--// for toaster message--}}
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+
 </head>
 <body>
 <!--Header Start-->

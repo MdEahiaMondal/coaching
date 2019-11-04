@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Batch;
 use App\ClassName;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class BatchController extends Controller
@@ -60,9 +61,11 @@ class BatchController extends Controller
     }
 
 
-    public function destroy(Batch $batch)
+    public function destroy(Request $request, Batch $batch)
     {
-        //
+       $batch->delete();
+      /*  Toastr::success('Batch Deleted Successfully Done', 'Success');*/
+        return $this->ClassWiseBatch($request);
     }
 
 
