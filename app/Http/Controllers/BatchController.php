@@ -66,32 +66,42 @@ class BatchController extends Controller
     }
 
 
+    public function ClassWiseBatch($r)
+    {
+        $class_id = $r->class_id;
+        $batchs = Batch::where(['class_id' =>$class_id])->get();
+        return view('backend.settings.batch.class_wise-batch', compact('batchs'));
+    }
+
+
     public function fetchData(Request $request)
     {
-        $batchs = Batch::where(['class_id' => $request->id])->get();
-        return view('backend.settings.batch.class_wise-batch', compact('batchs'));
+        return $this->ClassWiseBatch($request);
     }
 
 
-
-    public function BatchList($r)
+    public function BatchData($r)
     {
-        $id = $r->id;
-        $batchs = Batch::where(['class_id' =>$id])->get();
-        return view('backend.settings.batch.class_wise-batch', compact('batchs'));
+        return Batch::find($r->batch_id);
     }
-
 
     public function unpublished(Request $request)
     {
-        $batch = Batch::find($request->batch_id);
+        $batch = $this->BatchData($request);
         $batch->status = 0;
         $batch->save();
-
-        $batchs = Batch::where(['class_id' =>$request->class_id])->get();
-        return view('backend.settings.batch.class_wise-batch', compact('batchs'));
-
+        return $this->ClassWiseBatch($request);
     }
+
+
+    public function published(Request $request)
+    {
+        $batch = $this->BatchData($request);
+        $batch->status = 1;
+        $batch->save();
+       return $this->ClassWiseBatch($request);
+    }
+
 
 
 }

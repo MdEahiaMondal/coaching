@@ -54,9 +54,9 @@
 @push('script')
     <script>
         $("#className").change(function () {
-            var id = $(this).val();
-            if(id){
-                $.get("{{ route('get.batch.data') }}", {id:id}, function (feedBackResult) {
+            var class_id = $(this).val();
+            if(class_id){
+                $.get("{{ route('get.batch.data') }}", {class_id:class_id}, function (feedBackResult) {
                     $("#batchList").html(feedBackResult)
                 })
             }
