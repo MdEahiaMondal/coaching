@@ -115,6 +115,13 @@
                         </ul>
                     </li>
 
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Student Type</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('student_types.index') }}" class="dropdown-item">Student Type List</a></li>
+                        </ul>
+                    </li>
+
 
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#0">Slider</a>

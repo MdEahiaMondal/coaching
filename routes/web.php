@@ -91,7 +91,8 @@ Route::get('batch/published', 'BatchController@published')->name('batch.publishe
 Route::resource('batch', 'BatchController');
 
 
-
+//*****************************Student Type******************************
+Route::resource('student_types', 'StudentTypeController');
 
 
 
