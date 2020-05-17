@@ -4,4 +4,5 @@
 
 @include('backend.parcials.footer')
 
+@include('backend.parcials.loader')
 @stack('script')

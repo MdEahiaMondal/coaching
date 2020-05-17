@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Batch;
 use App\ClassName;
+use App\StudentType;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
@@ -30,11 +31,13 @@ class BatchController extends Controller
             'name' =>  'required',
             'student_capacity' =>  'required|integer',
             'class_id' =>  'required|numeric',
+            'student_type_id' =>  'required|numeric',
         ]);
 
 
         $batch = new Batch();
         $batch->class_id = $request->class_id;
+        $batch->student_type_id = $request->student_type_id;
         $batch->name = $request->name;
         $batch->student_capacity = $request->student_capacity;
         $batch->status = 1;
@@ -54,8 +57,9 @@ class BatchController extends Controller
     public function edit(Batch $batch)
     {
         $classes = ClassName::all();
-
-        return view('backend.settings.batch.edit', compact('classes', 'batch'));
+        $student_types = StudentType::where('class_name_id', $batch->class_id)
+        ->where('deleted_at', null)->get();
+        return view('backend.settings.batch.edit', compact('classes', 'batch', 'student_types'));
     }
 
 
@@ -66,6 +70,7 @@ class BatchController extends Controller
             'name'  => 'required|unique:batches,name,'.$batch->id.',id',
             'student_capacity' =>  'required|integer|max:150',
             'class_id' =>  'required|numeric',
+            'student_type_id' =>  'required|numeric',
         ]);
 
         $batch->update($request->all());
@@ -87,7 +92,8 @@ class BatchController extends Controller
     public function ClassWiseBatch($r)
     {
         $class_id = $r->class_id;
-        $batchs = Batch::where(['class_id' =>$class_id])->get();
+        $student_type_id = $r->student_type_id;
+        $batchs = Batch::where(['class_id' =>$class_id, 'student_type_id' => $student_type_id])->get();
         return view('backend.settings.batch.class_wise-batch', compact('batchs'));
     }
 
@@ -118,6 +124,20 @@ class BatchController extends Controller
         $batch->status = 1;
         $batch->save();
        return $this->ClassWiseBatch($request);
+    }
+
+
+    public function classWiseStudentType(Request $request)
+    {
+        $student_type = StudentType::where('class_name_id', $request->class_id)
+            ->where('deleted_at', null)->get();
+
+        $output = '<option value="">---Select Type---</option>';
+        foreach ($student_type as $type)
+        {
+            $output .= '<option value="'.$type->id.'">'.$type->student_type.'</option>';
+        }
+        return $output;
     }
 
 

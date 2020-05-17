@@ -51,6 +51,25 @@
                             <tr>
                                 <td>
                                     <div class="form-group row mb-0">
+                                        <label for="studentType" class="col-form-label col-sm-3 text-right">Student Type </label>
+                                        <div class="col-sm-9">
+                                            <select name="student_type_id" class="form-control @error('student_type_id') is-invalid @enderror" id="studentType" required autofocus>
+                                                <option value="">---Select Type---</option>
+                                                @foreach($student_types as $type)
+                                                    <option {{ $batch->student_type_id == $type->id ? 'selected' : '' }} value="{{ $type->id }}">{{ $type->student_type }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('student_type_id')
+                                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="form-group row mb-0">
                                         <label for="BatchName" class="col-form-label col-sm-3 text-right">Batch Name</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $batch->name }}" id="BatchName" placeholder="Write Batch Name here" required>
@@ -95,5 +114,20 @@
 
 
 @push('script')
-
+    <script>
+        $("#className").change(function () {
+            var class_id = $(this).val();
+            if (class_id)
+            {
+                $("#overlay .loader").show();
+                $.post('{{ route('class.wise.student-type') }}', {class_id: class_id}, function(res) {
+                    $("#studentType").html(res);
+                    $("#overlay .loader").hide();
+                })
+            }else{
+                $("#batchList").html('')
+                $("#studentType").html('<option value="">---Select Type---</option>');
+            }
+        })
+    </script>
 @endpush
