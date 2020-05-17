@@ -94,6 +94,7 @@ Route::resource('batch', 'BatchController');
 //*****************************Student Type******************************
 Route::get('student-type-list', 'StudentTypeController@studentTypeList')->name('student.type.list');
 Route::resource('student_types', 'StudentTypeController');
+Route::post('student-type-status-change', 'StudentTypeController@statusChange')->name('student.type.status-publish-un-publish');
 
 
 

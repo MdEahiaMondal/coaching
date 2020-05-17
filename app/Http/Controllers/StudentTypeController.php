@@ -12,10 +12,7 @@ class StudentTypeController extends Controller
 
     public function index()
     {
-        $studentTypes = DB::table('student_types')
-            ->join('class_names','student_types.class_name_id', '=','class_names.id')
-            ->select('student_types.*','class_names.name')->get();
-
+        $studentTypes = $this->getStudentTypeList();
         $classes = ClassName::all();
       return view('backend.settings.studentType.index', compact('studentTypes','classes'));
     }
@@ -43,57 +40,75 @@ class StudentTypeController extends Controller
 
     public function studentTypeList()
     {
-        $studentTypes = DB::table('student_types')
-            ->join('class_names','student_types.class_name_id', '=','class_names.id')
-            ->select('student_types.*','class_names.name')->get();
-
+        $studentTypes = $this->getStudentTypeList();
         return view('backend.settings.studentType.studentTypeList', compact('studentTypes'));
     }
 
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\StudentType  $studentType
-     * @return \Illuminate\Http\Response
-     */
     public function show(StudentType $studentType)
     {
-        //
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\StudentType  $studentType
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(StudentType $studentType)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\StudentType  $studentType
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, StudentType $studentType)
     {
-        //
+        if ($request->ajax())
+        {
+            $studentType->student_type = $request->student_type;
+            $studentType->save();
+            $studentTypes = $this->getStudentTypeList();
+            return view('backend.settings.studentType.studentTypeList', compact('studentTypes'));
+        }else{
+            abort(404);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\StudentType  $studentType
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(StudentType $studentType)
     {
-        //
+
+        if (request()->ajax())
+        {
+            if ($studentType)
+            {
+                $studentType->delete();
+                $studentTypes = $this->getStudentTypeList();
+                return view('backend.settings.studentType.studentTypeList', compact('studentTypes'));
+            }else{
+                return response()->json(false, 404);
+            }
+        }
+
     }
+
+
+    public function statusChange(Request $request)
+    {
+        if (!$request->ajax())
+        {
+            abort(404);
+        }
+        $data = StudentType::find($request->studentTypeId);
+        if ($data)
+        {
+            $data->status = $request->status;
+            $data->save();
+            $studentTypes = $this->getStudentTypeList();
+            return view('backend.settings.studentType.studentTypeList', compact('studentTypes'));
+        }else{
+            return response()->json('false');
+        }
+
+    }
+
+    protected function getStudentTypeList()
+    {
+        $studentTypes = DB::table('student_types')
+            ->join('class_names','student_types.class_name_id', '=','class_names.id')
+            ->select('student_types.*','class_names.name')
+            ->where('student_types.deleted_at', NULL)
+            ->get();
+        return $studentTypes;
+    }
+
 }

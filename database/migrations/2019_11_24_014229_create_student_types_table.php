@@ -18,6 +18,7 @@ class CreateStudentTypesTable extends Migration
             $table->unsignedBigInteger('class_name_id');
             $table->string('student_type');
             $table->tinyInteger('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

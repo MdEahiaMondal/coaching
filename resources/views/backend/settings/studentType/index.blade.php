@@ -42,50 +42,8 @@
             </div>
         </div>
 
-
-
-        <div class="modal fade" id="StudentTypeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('student_types.store') }}" method="post" id="StudentTypeform">
-                            @csrf
-                            <div class="form-group">
-                                <label for="className" class="col-form-label text-right">Class Name</label>
-                                    <select name="class_id" class="form-control @error('class_id') is-invalid @enderror" id="className" required autofocus>
-                                        <option value="">---Select Class---</option>
-                                        @foreach($classes as $class)
-                                            <option  value="{{ $class->id }}">{{ $class->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('class_id')
-                                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                                    @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="student_type" class="col-form-label">Student Type</label>
-                                <input type="text" id="student_type"  value="{{ old('student_type') }}" class="form-control" name="student_type">
-                            </div>
-
-                            <div class="form-group float-right">
-                                <button type="reset" id="reset" class="btn btn-secondary">Reset</button>
-                                <button type="submit" class="btn btn-primary">Create</button>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
+        @include('backend.settings.studentType.modal.create')
+        @include('backend.settings.studentType.modal.edit')
 
     </section>
     <!--Content End-->
@@ -107,7 +65,6 @@
             var data = $(this).serialize();
              $("#StudentTypeModal #reset").click();
              $("#StudentTypeModal").modal('hide');
-
             $.ajax({
                url:url,
                type:method,
@@ -121,6 +78,43 @@
                 }
             });
         })
+
+        // studen type status publish unpublish
+        function studentTypePublishUnPublish(studentTypeId, status) {
+            $.post('{{ route('student.type.status-publish-un-publish') }}', {studentTypeId :studentTypeId, status: status}, function (res) {
+                $("#studentTypeList").empty().html(res);
+            })
+        }
+      // studen type status publish unpublish
+        function studentTypeEdit(studentTypeId, student_type) {
+            $("#StudentTypeEditModal").modal('show')
+            $("#StudentTypeEditform").find('#student_type').val(student_type)
+            $("#StudentTypeEditform").find('#student_type_id').val(studentTypeId)
+        }
+
+        $("#StudentTypeEditform").submit(function (e) {
+            e.preventDefault();
+            var studentTypeId =  $("#StudentTypeEditform").find('#student_type_id').val()
+            var student_type =  $("#StudentTypeEditform").find('#student_type').val()
+            var url = '{{ route("student_types.update", ":id") }}';
+            url = url.replace(':id', studentTypeId);
+            var _method = 'put';
+            $.post(url, {student_type: student_type, _method:_method}, function (res) {
+                $("#studentTypeList").empty().html(res);
+                $("#StudentTypeEditModal #reset").click();
+                $("#StudentTypeEditModal").modal('hide');
+            })
+        })
+
+        function deletedstudentTye(id) {
+            var url = '{{ route("student_types.destroy", ":id") }}';
+            url = url.replace(':id', id);
+            var _method = 'delete';
+            $.post(url, {_method:_method}, function (res) {
+                $("#studentTypeList").empty().html(res);
+            })
+        }
+
 
     </script>
 
