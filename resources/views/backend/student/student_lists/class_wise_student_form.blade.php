@@ -16,13 +16,11 @@
             <div class="col-md-8 offset-md-2 pl-0 pr-0">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <h4 class="text-center font-weight-bold font-italic mt-3">Class wise  Batch </h4>
+                        <h4 class="text-center font-weight-bold font-italic mt-3">Class wise  Students </h4>
                     </div>
                 </div>
 
                 @include('backend.parcials.message')
-
-
 
                 <div class="row">
                     <div class="col-md-6">
@@ -52,20 +50,20 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-                    <div class="table-responsive p-1 mt-5">
-                        <table id="batchList" class="table table-bordered dt-responsive nowrap text-center"  style="width: 100%;">
-
-                        </table>
-                    </div>
-
             </div>
+
+
+            <div class="col-12 pl-0 pr-0 mt-5">
+                <div class="student_list">
+
+                </div>
+            </div>
+
+
         </div>
     </section>
     <!--Content End-->
+
 
 @endsection
 
@@ -79,31 +77,31 @@
 
 @push('script')
     <script>
-       $("#className").change(function () {
-           var class_id = $(this).val();
-           if (class_id)
-           {
-               $("#overlay .loader").show();
-               $.post('{{ route('class.wise.student-type') }}', {class_id: class_id}, function(res) {
-                   $("#studentType").html(res);
-                   $("#overlay .loader").hide();
-               })
-           }else{
-               $("#batchList").html('')
-               $("#studentType").html('<option value="">---Select Type---</option>');
-           }
-       })
+        $("#className").change(function () {
+            var class_id = $(this).val();
+            if (class_id)
+            {
+                $("#overlay .loader").show();
+                $.post('{{ route('student.registration.class-wise-student-type-show-for-student') }}', {class_id: class_id}, function(res) {
+                    $("#studentType").html(res);
+                    $("#overlay .loader").hide();
+                })
+            }else{
+                $("#batchList").html('')
+                $("#studentType").html('<option value="">---Select Type---</option>');
+            }
+        })
 
-       $("#studentType").change(function () {
-           var student_type_id = $(this).val();
-           var class_id = $("#className").val();
-           if(class_id && student_type_id){
-               $.get("{{ route('get.batch.data') }}", {class_id:class_id, student_type_id: student_type_id}, function (feedBackResult) {
-                   $("#batchList").html(feedBackResult)
-               })
-           }
+        $("#studentType").change(function () {
+            var student_type_id = $(this).val();
+            var class_id = $("#className").val();
+            if(class_id && student_type_id){
+                $.post("{{ route('student.registration.class-and-student-type-wise-students-show') }}", {class_id:class_id, student_type_id: student_type_id}, function (feedBackResult) {
+                    $(".student_list").html(feedBackResult)
+                })
+            }
 
-       })
+        })
 
     </script>
 @endpush

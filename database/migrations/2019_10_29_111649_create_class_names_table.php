@@ -15,7 +15,7 @@ class CreateClassNamesTable extends Migration
     {
         Schema::create('class_names', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('class_name');
             $table->tinyInteger('status');
             $table->timestamps();
         });

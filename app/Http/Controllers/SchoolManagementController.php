@@ -19,7 +19,7 @@ class SchoolManagementController extends Controller
         ]);
 
         $data = new School();
-        $data->name = $request->name;
+        $data->school_name = $request->name;
         $data->status = 1;
         $data->save();
         return back()->with('success', 'School Added Successfully Done !');
@@ -47,7 +47,7 @@ class SchoolManagementController extends Controller
 
         $school = School::find($id);
 
-        $school->name = $request->name;
+        $school->school_name = $request->name;
         $school->save();
 
         return redirect()->route('school-show')->with('success', 'School Name Update successfully Done!!');

@@ -27,7 +27,7 @@ class ClassNameController extends Controller
         ]);
 
         $data = new ClassName();
-        $data->name = $request->name;
+        $data->class_name = $request->name;
         $data->status = 1;
         $data->save();
         return redirect()->back()->with('success', 'Class Added Successfully  Done!');
@@ -50,7 +50,7 @@ class ClassNameController extends Controller
 
         $class = ClassName::find($id);
 
-        $class->name = $request->name;
+        $class->class_name = $request->name;
         $class->save();
 
         return redirect()->route('class.index')->with('success', 'Class Name Update successfully Done!!');

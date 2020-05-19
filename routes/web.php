@@ -99,6 +99,13 @@ Route::post('student-type-status-change', 'StudentTypeController@statusChange')-
 
 
 
+//*************** student register controller ****************
+Route::resource('studentregister', 'StudentRegisterController');
+Route::post('student-register/class-wise-student-type', 'StudentRegisterController@classWiseStudentTypeShow')->name('student.registration.class.wise.student-type');
+Route::post('student-register/class-and-student-type-wise-batch', 'StudentRegisterController@classAndStudentTypeWiseBatchTypeShow')->name('student.registration.class-and-student-type-wise-batch');
+Route::get('student-register/class-wise-student-form', 'StudentRegisterController@classWiseStudentFormShow')->name('student.registration.class-wise-student-form');
+Route::post('student-register/class-wise-student-type-show-for-student', 'StudentRegisterController@classWiseStudentTypeShowForStudents')->name('student.registration.class-wise-student-type-show-for-student');
+Route::post('student-register/class-and-student-type-wise-students-show', 'StudentRegisterController@classAndStudentTypeWiseStudentsShow')->name('student.registration.class-and-student-type-wise-students-show');
 
 
 

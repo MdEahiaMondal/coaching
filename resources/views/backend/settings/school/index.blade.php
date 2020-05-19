@@ -29,7 +29,7 @@
                         @foreach($schools as $school)
                             <tr>
                                 <td>{{ $i++ }}</td>
-                                <td>{{ $school->name }}</td>
+                                <td>{{ $school->school_name }}</td>
                                 <td>{{ $school->status == 1 ? 'publish' : 'Unpublish' }}</td>
                                 <td>
                                     @if($school->status == 1)

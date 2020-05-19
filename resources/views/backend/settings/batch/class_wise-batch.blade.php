@@ -14,7 +14,7 @@
     @foreach($batchs as $key => $batch)
         <tr>
             <td>{{ $key + 1 }}</td>
-            <td>{{ $batch->name }}</td>
+            <td>{{ $batch->batch_name }}</td>
             <td>{{ $batch->student_capacity }}</td>
             <td>{{ $batch->status == 1 ? 'publish' : 'Unpublish' }}</td>
             <td>

@@ -23,7 +23,7 @@
                                     <div class="form-group row mb-0">
                                         <label for="className" class="col-form-label col-sm-3 text-right">class Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $class->name }}" id="className" placeholder="Write class Name here" required>
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $class->class_name }}" id="className" placeholder="Write class Name here" required>
                                             @error('name')
                                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                             @enderror

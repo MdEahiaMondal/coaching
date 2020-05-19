@@ -38,7 +38,7 @@ class BatchController extends Controller
         $batch = new Batch();
         $batch->class_id = $request->class_id;
         $batch->student_type_id = $request->student_type_id;
-        $batch->name = $request->name;
+        $batch->batch_name = $request->name;
         $batch->student_capacity = $request->student_capacity;
         $batch->status = 1;
         $batch->save();
@@ -67,7 +67,7 @@ class BatchController extends Controller
     {
 
         $this->validate($request, [
-            'name'  => 'required|unique:batches,name,'.$batch->id.',id',
+            'batch_name'  => 'required|unique:batches,batch_name,'.$batch->id.',id',
             'student_capacity' =>  'required|integer|max:150',
             'class_id' =>  'required|numeric',
             'student_type_id' =>  'required|numeric',
@@ -130,7 +130,8 @@ class BatchController extends Controller
     public function classWiseStudentType(Request $request)
     {
         $student_type = StudentType::where('class_name_id', $request->class_id)
-            ->where('deleted_at', null)->get();
+            ->where('deleted_at', null)
+            ->where('status', 1)->get();
 
         $output = '<option value="">---Select Type---</option>';
         foreach ($student_type as $type)

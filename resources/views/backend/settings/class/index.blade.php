@@ -37,7 +37,7 @@
                         @foreach($classs as $class)
                             <tr>
                                 <td>{{ $i++ }}</td>
-                                <td>{{ $class->name }}</td>
+                                <td>{{ $class->class_name }}</td>
                                 <td class="{{ $class->status == 1 ? 'text-success' : 'text-warning' }}">{{ $class->status == 1 ? 'publish' : 'Unpublish' }}</td>
                                 <td>
                                     @if($class->status == 1)

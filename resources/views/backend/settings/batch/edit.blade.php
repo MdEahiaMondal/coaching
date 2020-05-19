@@ -37,7 +37,7 @@
                                             <select name="class_id" class="form-control @error('class_id') is-invalid @enderror" id="className" required autofocus>
                                                 <option value="">---Select Class---</option>
                                                 @foreach($classes as $class)
-                                                    <option {{ $class->id == $batch->class_id ? 'selected' : ''}}  value="{{ $class->id }}">{{ $class->name }}</option>
+                                                    <option {{ $class->id == $batch->class_id ? 'selected' : ''}}  value="{{ $class->id }}">{{ $class->class_name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('class_id')
@@ -72,8 +72,8 @@
                                     <div class="form-group row mb-0">
                                         <label for="BatchName" class="col-form-label col-sm-3 text-right">Batch Name</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $batch->name }}" id="BatchName" placeholder="Write Batch Name here" required>
-                                            @error('name')
+                                            <input type="text" class="form-control @error('batch_name') is-invalid @enderror" name="batch_name" value="{{ $batch->batch_name }}" id="BatchName" placeholder="Write Batch Name here" required>
+                                            @error('batch_name')
                                             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                             @enderror
                                         </div>
