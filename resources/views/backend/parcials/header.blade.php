@@ -79,7 +79,7 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <li class=""><a class="dropdown-item" href="{{ route('studentregister.create') }}">Student Registration</a></li>
                     <li class=""><a class="dropdown-item" href="{{ route('studentregister.index') }}">Running All students List</a></li>
-                    <li class=""><a class="dropdown-item" href="table.html">Batch Wise List</a></li>
+                    <li class=""><a class="dropdown-item" href="{{ route('student.registration.batch-wise.student-form') }}">Batch Wise List</a></li>
                     <li class=""><a class="dropdown-item" href="{{ route('student.registration.class-wise-student-form') }}">Class Wise List</a></li>
                 </ul>
             </li>

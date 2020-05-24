@@ -15,7 +15,7 @@
                         <select name="class_id" class="form-control @error('class_id') is-invalid @enderror" id="className" required autofocus>
                             <option value="">---Select Class---</option>
                             @foreach($classes as $class)
-                                <option  value="{{ $class->id }}">{{ $class->name }}</option>
+                                <option  value="{{ $class->id }}">{{ $class->class_name }}</option>
                             @endforeach
                         </select>
                         @error('class_id')

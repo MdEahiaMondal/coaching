@@ -3,7 +3,7 @@
     <select name="batch_id['{{ $student_type->id }}']" class="form-control col-sm-8" id="BatchName" required>
         <option value="">Select Batch</option>
         @foreach($batches as $batch)
-            <option value="{{ $batch->id }}">{{ $batch->name }}</option>
+            <option value="{{ $batch->id }}">{{ $batch->batch_name }}</option>
         @endforeach
     </select>
     <span class="text-danger"></span>

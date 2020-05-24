@@ -5,7 +5,6 @@
             <th>Sl.</th>
             <th>Student</th>
             <th>School</th>
-            <th>Batch</th>
             <th>Roll No</th>
             <th>Father`s name</th>
             <th>Father`s Mobile</th>
@@ -23,7 +22,6 @@
                 <td>{{ $i++ }}</td>
                 <td>{{ $student->student_name }}</td>
                 <td>{{ $student->school_name }}</td>
-                <td>{{ $student->batch_name }}</td>
                 <td>{{ $student->roll_no }}</td>
                 <td>{{ $student->father_name }}</td>
                 <td>{{ $student->father_mobile }}</td>
@@ -32,12 +30,12 @@
                 <td>{{ $student->sms_mobile }}</td>
                 <td>{{ $student->address }}</td>
                 <td>
-                   {{-- @if($student->student_register_status == 1)
-                        <a href="{{ route('slider-unpublish',['slider'=>$student->id]) }}" title="press to unpublish" class="btn btn-sm btn-success"><span class="fa fa-arrow-alt-circle-down"></span></a>
-                    @else
-                        <a href="{{ route('slider-publish',['slider'=>$student->id]) }}" class="btn btn-sm btn-warning"><span title="press to publish" class="fa fa-arrow-alt-circle-up"></span></a>
-                    @endif
---}}
+                    {{-- @if($student->student_register_status == 1)
+                         <a href="{{ route('slider-unpublish',['slider'=>$student->id]) }}" title="press to unpublish" class="btn btn-sm btn-success"><span class="fa fa-arrow-alt-circle-down"></span></a>
+                     @else
+                         <a href="{{ route('slider-publish',['slider'=>$student->id]) }}" class="btn btn-sm btn-warning"><span title="press to publish" class="fa fa-arrow-alt-circle-up"></span></a>
+                     @endif
+ --}}
                     <a href="{{ route('studentregister.show', $student->id) }}" target="_blank" class="btn btn-sm btn-info"><span class="fa fa-eye"></span></a>
                     <a href="{{ route('slider-edit', ['slider'=>$student->id]) }}" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
                     <a href="{{ route('slider-delete', ['slider'=>$student->id]) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>

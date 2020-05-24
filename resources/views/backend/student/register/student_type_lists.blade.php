@@ -4,7 +4,7 @@
     <select name="class_id" class="form-control col-sm-8" id="className" required>
         <option value="">Select Class</option>
         @foreach($calsses as $class)
-            <option {{ $class_id == $class->id ? 'selected' : '' }} value="{{ $class->id }}">{{ $class->name }}</option>
+            <option {{ $class_id == $class->id ? 'selected' : '' }} value="{{ $class->id }}">{{ $class->class_name }}</option>
         @endforeach
     </select>
     <span class="text-danger"></span>
@@ -25,7 +25,7 @@
 
 
 @foreach($student_types as $type)
-<div class="col-12">
+<div class="col-12 batchRoleForm">
     <div class="row" id="BatchRollForm-{{$type->id}}">
 
     </div>
@@ -62,6 +62,7 @@
             })
         }else{
             $("#batchList").html('')
+            $(".batchRoleForm").html('')
             $("#studentType").html('<span class="text-info">first select class name</span>');
         }
     })

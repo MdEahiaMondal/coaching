@@ -47,13 +47,14 @@
                                 <td>{{ $student->address }}</td>
 
                                 <td>
-                                    @if($student->student_register_status == 1)
+                              {{--      @if($student->student_register_status == 1)
                                         <a href="{{ route('slider-unpublish',['slider'=>$student->id]) }}" title="press to unpublish" class="btn btn-sm btn-success"><span class="fa fa-arrow-alt-circle-down"></span></a>
                                     @else
                                         <a href="{{ route('slider-publish',['slider'=>$student->id]) }}" class="btn btn-sm btn-warning"><span title="press to publish" class="fa fa-arrow-alt-circle-up"></span></a>
                                     @endif
-
-                                    <a href="{{ route('slider-edit', ['slider'=>$student->id]) }}" class="btn btn-sm btn-info"><span class="fa fa-edit"></span></a>
+--}}
+                                    <a href="{{ route('studentregister.show', $student->id) }}" class="btn btn-sm btn-info"><span class="fa fa-eye"></span></a>
+                                    <a href="{{ route('slider-edit', ['slider'=>$student->id]) }}" class="btn btn-sm btn-primary"><span class="fa fa-edit"></span></a>
                                     <a href="{{ route('slider-delete', ['slider'=>$student->id]) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span></a>
                                 </td>
                             </tr>

@@ -106,6 +106,9 @@ Route::post('student-register/class-and-student-type-wise-batch', 'StudentRegist
 Route::get('student-register/class-wise-student-form', 'StudentRegisterController@classWiseStudentFormShow')->name('student.registration.class-wise-student-form');
 Route::post('student-register/class-wise-student-type-show-for-student', 'StudentRegisterController@classWiseStudentTypeShowForStudents')->name('student.registration.class-wise-student-type-show-for-student');
 Route::post('student-register/class-and-student-type-wise-students-show', 'StudentRegisterController@classAndStudentTypeWiseStudentsShow')->name('student.registration.class-and-student-type-wise-students-show');
+Route::get('student-register/batch-wise.students-form', 'StudentRegisterController@batchWiseStudentsForm')->name('student.registration.batch-wise.student-form');
+Route::post('student-register/batch-wise.students-batch-list', 'StudentRegisterController@batchWiseStudentsBatchList')->name('student.registration.batch-wise-students-batch-list');
+Route::post('student-register/batch-wise.students-list', 'StudentRegisterController@batchWiseStudentsList')->name('student.registration.batch-wise-students-list');
 
 
 

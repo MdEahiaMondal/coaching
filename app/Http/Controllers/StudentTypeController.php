@@ -105,7 +105,7 @@ class StudentTypeController extends Controller
     {
         $studentTypes = DB::table('student_types')
             ->join('class_names','student_types.class_name_id', '=','class_names.id')
-            ->select('student_types.*','class_names.name')
+            ->select('student_types.*','class_names.class_name')
             ->where('student_types.deleted_at', NULL)
             ->get();
         return $studentTypes;

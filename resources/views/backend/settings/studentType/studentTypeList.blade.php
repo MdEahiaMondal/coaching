@@ -4,7 +4,7 @@
     @foreach($studentTypes as $studentType)
         <tr>
             <td>{{ $i++ }}</td>
-            <td>{{ $studentType->name }}</td>
+            <td>{{ $studentType->class_name }}</td>
             <td>{{ $studentType->student_type }}</td>
             <td class="{{ $studentType->status == 1 ? 'text-success' : 'text-warning' }}">{{ $studentType->status == 1 ? 'publish' : 'Unpublish' }}</td>
             <td>

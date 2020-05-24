@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Batch;
 use App\ClassName;
+use App\Http\Requests\StudentRegisterRequest;
 use App\School;
 use App\StudentRegister;
 use App\StudentType;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Image;
 
 class StudentRegisterController extends Controller
 {
@@ -35,7 +37,7 @@ class StudentRegisterController extends Controller
         return view('backend.student.register.student_form', compact('calsses', 'schools'));
     }
 
-    public function store(Request $request)
+    public function store(StudentRegisterRequest $request)
     {
        $student_register = StudentRegister::create([
            'student_name' => $request->student_name,
@@ -72,14 +74,21 @@ class StudentRegisterController extends Controller
            ]);
        }
 
+        if ($request->has('student_photo'))
+        {
+            $this->uploadPhoto($student_register, $request);
+        }
+
        return redirect()->back()->with('success', 'Student registration success');
 
     }
 
 
-    public function show(StudentRegister $studentRegister)
+    public function show($student_id)
     {
-        //
+       $students = $this->singleStudentInfo($student_id);
+        $schools = School::where('status', 1)->get();
+       return view('backend.student.profiles.profile',  compact('students', 'schools'));
     }
 
 
@@ -89,9 +98,27 @@ class StudentRegisterController extends Controller
     }
 
 
-    public function update(Request $request, StudentRegister $studentRegister)
+    public function update(StudentRegisterRequest $request, $id)
     {
-        //
+        $student = StudentRegister::findOrFail($id);
+        $student->student_name = $request->student_name;
+        $student->school_id = $request->school_id;
+        $student->father_name = $request->father_name;
+        $student->father_mobile = $request->father_mobile;
+        $student->father_profession = $request->father_profession;
+        $student->mother_name = $request->mother_name;
+        $student->mother_mobile = $request->mother_mobile;
+        $student->mother_profession = $request->mother_profession;
+        $student->email_address = $request->email_address;
+        $student->sms_mobile = $request->sms_mobile;
+        $student->date_of_admission = $request->date_of_admission;
+        $student->address = $request->address;
+        if ($request->has('student_photo'))
+        {
+            $this->updateStudentPhoto($student, $request);
+        }
+        $student->save();
+        return redirect()->back()->with('success', 'Student successfully updated');
     }
 
     public function destroy(StudentRegister $studentRegister)
@@ -156,6 +183,81 @@ class StudentRegisterController extends Controller
             ->select('student_registers.*', 'schools.school_name', 'batches.batch_name', 'student_type_details.roll_no')
             ->get();
         return view('backend.student.student_lists.class_and_student_type_wise_student_lists', compact('students'));
+    }
+
+    protected function singleStudentInfo($id)
+    {
+        $students = DB::table('student_registers')
+            ->join('schools', 'student_registers.school_id', '=', 'schools.id')
+            ->join('class_names', 'student_registers.class_id', '=', 'class_names.id')
+            ->join('student_type_details', 'student_type_details.student_register_id', '=', 'student_registers.id')
+            ->join('student_types', 'student_type_details.student_type_id', '=', 'student_types.id')
+            ->join('batches', 'student_type_details.batch_id', '=', 'batches.id')
+            ->where([
+                'student_registers.student_register_status' => 1,
+                'student_registers.id' => $id,
+            ])
+            ->select('student_registers.*', 'schools.school_name', 'class_names.class_name', 'batches.batch_name', 'student_type_details.roll_no', 'student_types.student_type')
+            ->get();
+        return $students;
+    }
+
+    private function updateStudentPhoto($student, $request)
+    {
+        if (isset($student->student_photo))
+        {
+            unlink($student->student_photo);
+            $this->uploadPhoto($student, $request);
+        }else{
+            $this->uploadPhoto($student, $request);
+        }
+    }
+
+    private function uploadPhoto($student, $request)
+    {
+        $image = $request->file('student_photo');
+        $image_name = uniqid() .'-'.$image->getClientOriginalName() ;
+        $directory = 'backend/images/students/';
+        $upload_image_url = $directory.$image_name;
+        Image::make($image)->resize(300,300)->save($upload_image_url);
+        $student->student_photo = $upload_image_url;
+        $student->save();
+    }
+
+    public function batchWiseStudentsForm()
+    {
+        $classes = ClassName::where('status', 1)->get();
+        return view('backend.student.batch.batch_wise_student_form', compact('classes'));
+    }
+
+    public function batchWiseStudentsBatchList(Request $request)
+    {
+        $batches = Batch::where([
+            'class_id' => $request->class_id,
+            'student_type_id' => $request->student_type_id,
+            'status' => 1,
+        ])->get();
+
+        return view('backend.student.batch.batch_lists', compact('batches'));
+    }
+
+    public function batchWiseStudentsList(Request $request)
+    {
+        $students = DB::table('student_registers')
+            ->join('schools', 'student_registers.school_id', '=', 'schools.id')
+            ->join('student_type_details', 'student_type_details.student_register_id', '=', 'student_registers.id')
+            ->join('batches', 'student_type_details.batch_id', '=', 'batches.id')
+            ->where([
+                'student_registers.student_register_status' => 1,
+                'student_type_details.student_type_detail_status' => 1,
+                'student_registers.class_id' => $request->class_id,
+                'student_type_details.batch_id' => $request->batch_id,
+                'student_type_details.student_type_id' => $request->student_type_id
+            ])
+            ->select('student_registers.*', 'schools.school_name', 'batches.batch_name', 'student_type_details.roll_no')
+            ->get();
+
+        return view('backend.student.batch.batch_wise_student_lists', compact('students'));
     }
 
 }
