@@ -110,9 +110,19 @@ Route::get('student-register/batch-wise.students-form', 'StudentRegisterControll
 Route::post('student-register/batch-wise.students-batch-list', 'StudentRegisterController@batchWiseStudentsBatchList')->name('student.registration.batch-wise-students-batch-list');
 Route::post('student-register/batch-wise.students-list', 'StudentRegisterController@batchWiseStudentsList')->name('student.registration.batch-wise-students-list');
 
+//start==> date management controller
+Route::get('date/add', 'DateManagementController@addYear')->name('date.add');
+//end==> date management controller
 
-
-
+//start==> students attendance controller
+Route::resource('attendance', 'StudentAttendanceController');
+Route::post('attendance/student-list', 'StudentAttendanceController@attendanceStudentlists')->name('attendance.student-lists');
+Route::get('batch-wise-students-attendance-view-form', 'StudentAttendanceController@batchWiseStudentAttendanceViewForm')->name('attendance.batch-wise-student-attendance-view-form');
+Route::post('attendance/batch-wise-student-attendance-view', 'StudentAttendanceController@batchWiseStudentAttendanceViewList')->name('attendance.batch-wise-student-attendance-view');
+Route::get('batch-wise-student-attendance-edit-form', 'StudentAttendanceController@batchWiseStudentAttendanceEditForm')->name('attendance.batch-wise-student-attendance-edit-form');
+Route::post('attendance/batch-wise-student-attendance-edit-lists', 'StudentAttendanceController@batchWiseStudentAttendanceEditList')->name('attendance.batch-wise-student-attendance-edit-list');
+Route::put('batch-wise-student-attendance-update', 'StudentAttendanceController@batchWiseStudentAttendanceUpdate')->name('attendance.batch-wise-student-attendance-update');
+//end==> students attendance controller
 
 
 

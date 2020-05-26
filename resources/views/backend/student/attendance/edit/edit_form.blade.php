@@ -12,21 +12,20 @@
 
     <!--Content Start-->
     <section class="container-fluid">
-        <div class="row content">
-            <div class="col-md-8 offset-md-2 pl-0 pr-0">
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <h4 class="text-center font-weight-bold font-italic mt-3">Batch wise  Students </h4>
+        <form action="{{ route('attendance.batch-wise-student-attendance-update') }}" method="post">
+            @method('PUT')
+            @csrf
+            <div class="row content">
+                <div class="col-md-8 offset-md-2 pl-0 pr-0">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <h4 class="text-center font-weight-bold font-italic mt-3">Batch Wise Students Attendance Update</h4>
+                        </div>
                     </div>
-                </div>
-
-                @include('backend.parcials.message')
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group row mb-0">
-                            <label for="className" class="col-form-label col-sm-3 text-right">Class Name</label>
-                            <div class="col-sm-9">
+                    @include('backend.parcials.message')
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group row mr-2">
                                 <select name="class_id" class="form-control" id="className" required autofocus>
                                     <option value="">---Select Class---</option>
                                     @foreach($classes as $class)
@@ -35,11 +34,8 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group row mb-0">
-                            <label for="studentType" class="col-form-label col-sm-3 text-right">Student Type </label>
-                            <div class="col-sm-9">
+                        <div class="col-md-4">
+                            <div class="form-group row mr-2">
                                 <select name="student_type_id" class="form-control @error('student_type_id') is-invalid @enderror" id="studentType" required autofocus>
                                     <option value="">---Select Type---</option>
                                 </select>
@@ -48,11 +44,8 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group row mb-0">
-                            <label for="studentType" class="col-form-label col-sm-3 text-right">Batch  </label>
-                            <div class="col-sm-9">
+                        <div class="col-md-4">
+                            <div class="form-group row mb-0">
                                 <select name="batch_id" class="form-control @error('batch_id') is-invalid @enderror" id="batchId" required autofocus>
                                     <option value="">---Select Batch---</option>
                                 </select>
@@ -63,17 +56,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-12 pl-0 pr-0 mt-5">
+                    <div class="student_list">
 
-
-            <div class="col-12 pl-0 pr-0 mt-5">
-                <div class="student_list">
-
+                    </div>
                 </div>
             </div>
+        </form>
 
-
-        </div>
     </section>
     <!--Content End-->
 
@@ -121,12 +111,18 @@
             var class_id = $("#className").val();
             var batch_id = $(this).val();
             if(class_id && student_type_id && batch_id){
-                $.post("{{ route('student.registration.batch-wise-students-list') }}", {
+                $.post("{{ route('attendance.batch-wise-student-attendance-edit-list') }}", {
                     class_id:class_id,
                     student_type_id: student_type_id,
-                    batch_id:batch_id
+                    batch_id:batch_id,
                 }, function (feedBackResult) {
-                    $(".student_list").html(feedBackResult)
+                    console.log(feedBackResult)
+                    if(feedBackResult)
+                    {
+                        $(".student_list").html(feedBackResult)
+                    }else{
+                        toastr.warning('This Batch\'s attendance does not submitted yet!!  ')
+                    }
                 })
             }
         })

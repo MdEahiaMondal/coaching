@@ -83,6 +83,16 @@
                     <li class=""><a class="dropdown-item" href="{{ route('student.registration.class-wise-student-form') }}">Class Wise List</a></li>
                 </ul>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Attendance
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li class=""><a class="dropdown-item" href="{{ route('attendance.create') }}">Add Attendance</a></li>
+                    <li class=""><a class="dropdown-item" href="{{ route('attendance.batch-wise-student-attendance-view-form') }}">View Attendance</a></li>
+                    <li class=""><a class="dropdown-item" href="{{ route('attendance.batch-wise-student-attendance-edit-form') }}">Edit Attendance</a></li>
+                </ul>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('photo-gallery') }}">Gallery</a>
@@ -153,6 +163,13 @@
                                     <li><a href=" {{ route('user-list') }}" class="dropdown-item">User List</a></li>
                                 @endif
                                     <li><a href=" {{ route('user-profile',['user'=>auth()->id()]) }}" class="dropdown-item">User Profile</a></li>
+                            </ul>
+                    </li>
+
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Date</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('date.add') }}" class="dropdown-item">Add Year</a></li>
                             </ul>
                     </li>
 
