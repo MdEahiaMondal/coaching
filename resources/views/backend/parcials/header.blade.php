@@ -134,6 +134,14 @@
                         </ul>
                     </li>
 
+                    <li class="dropdown-submenu">
+                        <a class="dropdown-item dropdown-toggle" href="#">Exam</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('exam.create') }}" class="dropdown-item">Add Exam</a></li>
+                            <li><a href="{{ route('exam.index') }}" class="dropdown-item">View Exam</a></li>
+                        </ul>
+                    </li>
+
 
                     <li class="dropdown-submenu">
                         <a class="dropdown-item dropdown-toggle" href="#0">Slider</a>

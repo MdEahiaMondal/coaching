@@ -127,5 +127,15 @@ Route::put('batch-wise-student-attendance-update', 'StudentAttendanceController@
 
 
 
+//start==> students attendance controller
+Route::resource('exam', 'ExamController');
+Route::post('exam/class-wise-student-type', 'ExamController@classWiseStudentType')->name('exam.class.wise.student-type');
+Route::post('exam/class-wise-exam-lists', 'ExamController@classWiseExamList')->name('exam.class-wise-exam-lists');
+Route::post('exam/status-published-unpublished', 'ExamController@statusPublishedUnpublished')->name('exam.status-published-unpublished');
+//end==> students attendance controller
+
+
+
+
 
 
